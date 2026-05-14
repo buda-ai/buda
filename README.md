@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://buda.im">
-    <img src="https://buda.im/assets/logos/logo-stacked.svg" alt="Buda" width="160" />
+    <img src=".github/images/brand/buda-logo-stacked-parchment.png" alt="Buda" width="170" />
   </a>
 </p>
 
