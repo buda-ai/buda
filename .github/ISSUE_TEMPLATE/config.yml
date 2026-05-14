@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Buda Support
+    url: https://buda.im
+    about: For product, account, and workspace support.
+  - name: Buda Release Notes
+    url: https://buda.im/release-notes
+    about: Read the latest product updates.
+  - name: Security Reports
+    url: mailto:security@buda.ai
+    about: Please do not open public issues for security reports.
