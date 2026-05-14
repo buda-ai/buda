@@ -53,20 +53,30 @@ Buda is an AI-native workspace for running agents like a company.
 
 Instead of one person talking to one model in one chat thread, Buda lets multiple agents work in parallel with persistent context, shared files, tools, browser sessions, terminal access, and human review.
 
+Buda is powered by [Bunny Agent](https://github.com/buda-ai/bunny-agent), the underlying agent runtime for executing real work.
+
 ## Product Overview
 
 A quick visual tour of Buda.
 
-<div style="overflow-x: auto; white-space: nowrap; padding: 8px 0 16px;">
-  <img src=".github/images/gallery/slide0-agents-company.png" alt="Buda turns agents into a company" width="360" style="display: inline-block; margin-right: 12px;" />
-  <img src=".github/images/gallery/slide1-no-mac-mini.png" alt="No Mac mini required" width="360" style="display: inline-block; margin-right: 12px;" />
-  <img src=".github/images/gallery/slide2-watch-agents.png" alt="Watch agents work" width="360" style="display: inline-block; margin-right: 12px;" />
-  <img src=".github/images/gallery/slide3-organizer-claws.png" alt="Organizer coordinates Claws" width="360" style="display: inline-block; margin-right: 12px;" />
-  <img src=".github/images/gallery/slide4-drive-memory.png" alt="Drive-based memory" width="360" style="display: inline-block; margin-right: 12px;" />
-  <img src=".github/images/gallery/slide5-marketplace.png" alt="Buda marketplace" width="360" style="display: inline-block; margin-right: 12px;" />
-  <img src=".github/images/gallery/slide6-everywhere-agents.png" alt="Agents everywhere" width="360" style="display: inline-block; margin-right: 12px;" />
-  <img src=".github/images/gallery/slide-cta.png" alt="Try Buda" width="360" style="display: inline-block;" />
-</div>
+<table>
+  <tr>
+    <td width="50%"><img src=".github/images/gallery/slide0-agents-company.png" alt="Buda turns agents into a company" /></td>
+    <td width="50%"><img src=".github/images/gallery/slide1-no-mac-mini.png" alt="No Mac mini required" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src=".github/images/gallery/slide2-watch-agents.png" alt="Watch agents work" /></td>
+    <td width="50%"><img src=".github/images/gallery/slide3-organizer-claws.png" alt="Organizer coordinates Claws" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src=".github/images/gallery/slide4-drive-memory.png" alt="Drive-based memory" /></td>
+    <td width="50%"><img src=".github/images/gallery/slide5-marketplace.png" alt="Buda marketplace" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src=".github/images/gallery/slide6-everywhere-agents.png" alt="Agents everywhere" /></td>
+    <td width="50%"><img src=".github/images/gallery/slide-cta.png" alt="Try Buda" /></td>
+  </tr>
+</table>
 
 ## Features
 
@@ -145,6 +155,8 @@ Replace each placeholder with a feature screenshot when the final images are rea
 
 Buda is also a marketplace for developers. Build useful skills, agents, or teams once, publish them to the Buda Marketplace, set pricing, and earn when people use your work.
 
+The official marketplace packages live in [buda-ai/buda-marketplace](https://github.com/buda-ai/buda-marketplace), and follow the portable [Agent Companies Spec](https://agentcompanies.io). To publish your own paid skills, start with the [Sell Skills documentation](https://buda.im/docs/sell-skills).
+
 | Developer motion | What you can do |
 | --- | --- |
 | Build a Skill | Package repeatable capabilities for research, coding, content, ops, sales, support, or data work. |
@@ -157,6 +169,9 @@ Marketplace developer pricing screenshot coming soon.
 | Need | Link |
 | --- | --- |
 | Start publishing | [Developer Portal](https://buda.im/developer) |
+| Learn how to sell skills | [Sell Skills Docs](https://buda.im/docs/sell-skills) |
+| See official marketplace packages | [buda-ai/buda-marketplace](https://github.com/buda-ai/buda-marketplace) |
+| Explore the agent runtime | [buda-ai/bunny-agent](https://github.com/buda-ai/bunny-agent) |
 | Browse the marketplace | [Marketplace](https://buda.im/marketplace) |
 | Learn the portable company format | [Agent Companies Spec](https://agentcompanies.io) |
 | Read technical docs | [Docs](https://buda.im/docs) |
@@ -179,6 +194,9 @@ Marketplace developer pricing screenshot coming soon.
 | Documentation | [https://buda.im/docs](https://buda.im/docs) |
 | Marketplace | [https://buda.im/marketplace](https://buda.im/marketplace) |
 | Developer Portal | [https://buda.im/developer](https://buda.im/developer) |
+| Sell Skills Docs | [https://buda.im/docs/sell-skills](https://buda.im/docs/sell-skills) |
+| Bunny Agent Runtime | [https://github.com/buda-ai/bunny-agent](https://github.com/buda-ai/bunny-agent) |
+| Official Marketplace Repo | [https://github.com/buda-ai/buda-marketplace](https://github.com/buda-ai/buda-marketplace) |
 | Release Notes | [https://buda.im/release-notes](https://buda.im/release-notes) |
 | Pricing | [https://buda.im/pricing](https://buda.im/pricing) |
 | Agent Companies Spec | [https://agentcompanies.io](https://agentcompanies.io) |
