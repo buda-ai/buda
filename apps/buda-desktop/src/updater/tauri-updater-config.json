@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicehash/tauri-plugins-workspace/refs/heads/v2/plugins/updater/schemas/schema.json",
+  "_comment": "Merge this into your tauri.conf.json under 'plugins.updater'",
+  "updater": {
+    "active": true,
+    "dialog": false,
+    "endpoints": [
+      "https://github.com/buda-ai/buda/releases/latest/download/latest.json"
+    ]
+  }
+}
