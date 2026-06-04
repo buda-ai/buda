@@ -1,16 +1,16 @@
 # Buda Desktop Auto-Updater
 
-在线自动升级模块，检查 GitHub Releases 中的 `latest.json` 并在发现新版本时提示用户升级。
+在线自动升级模块，静默检查 GitHub Releases 中的 `latest.json`，发现新版本时通过小红点提示用户，由用户主动点击升级按钮触发更新。
 
 ## 工作原理
 
-1. 应用启动后延迟 5 秒进行首次更新检查（避免阻塞启动）
-2. 之后每 30 分钟周期性检查一次
+1. 应用启动后延迟 10 秒进行首次更新检查（避免阻塞启动）
+2. 之后每 1 小时周期性静默检查一次
 3. 检查 `https://github.com/buda-ai/buda/releases/latest/download/latest.json`
-4. 如果发现版本比当前版本新，弹窗询问用户是否升级
-5. 用户确认后自动下载、安装并重启应用
+4. 如果发现版本比当前版本新，更新内部状态并通知 UI 显示小红点
+5. 用户点击升级按钮后，弹窗确认，然后自动下载、安装并重启应用
 
-触发时机参考了通知（notification）系统的设计模式：启动后延迟 + 定期轮询。
+**不会主动弹出升级对话框**，仅在 UI 上展示红点提示。
 
 ## 集成方式
 
@@ -61,10 +61,25 @@ fn main() {
 ### 4. 在应用入口调用
 
 ```typescript
-import { startAutoUpdate } from "./updater";
+import { startAutoUpdate, onUpdateAvailable, performUpdate } from "./updater";
 
-// 在应用初始化时启动自动更新（参考 notification 初始化位置）
+// 启动静默检查
 startAutoUpdate();
+
+// 订阅更新状态，用于显示/隐藏小红点
+onUpdateAvailable((info) => {
+  if (info.available) {
+    // 显示小红点，例如：
+    showUpgradeBadge(true, info.version);
+  } else {
+    showUpgradeBadge(false);
+  }
+});
+
+// 用户点击升级按钮时调用
+upgradeButton.addEventListener("click", () => {
+  performUpdate();
+});
 ```
 
 ### 5. 权限配置 (src-tauri/capabilities/default.json)
@@ -83,9 +98,12 @@ startAutoUpdate();
 
 | 函数 | 说明 |
 |------|------|
-| `startAutoUpdate()` | 启动自动更新生命周期（启动延迟 + 定期检查） |
+| `startAutoUpdate()` | 启动自动更新生命周期（启动延迟 + 每小时静默检查） |
 | `stopAutoUpdate()` | 停止定期检查 |
-| `checkForUpdate()` | 手动触发一次更新检查 |
+| `checkForUpdate()` | 手动触发一次静默检查（仅更新状态，不弹窗） |
+| `getUpdateInfo()` | 获取当前更新状态（是否有新版本、版本号、更新日志） |
+| `onUpdateAvailable(listener)` | 订阅更新状态变化，返回取消订阅函数 |
+| `performUpdate()` | 用户主动触发升级（弹窗确认 → 下载安装 → 重启） |
 
 ## latest.json 格式
 
