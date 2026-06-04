@@ -22,6 +22,7 @@ const INITIAL_DELAY_MS = 10_000;
 const CHECK_INTERVAL_MS = 60 * 60 * 1_000; // 1 hour
 
 let intervalId: ReturnType<typeof setInterval> | null = null;
+let initialTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
 // ---------------------------------------------------------------------------
 // Reactive update state
@@ -197,8 +198,12 @@ export async function performUpdate(): Promise<boolean> {
  * the upgrade button which calls {@link performUpdate}.
  */
 export function startAutoUpdate(): void {
+  // Prevent duplicate lifecycle if called multiple times
+  stopAutoUpdate();
+
   // First check after initial delay (avoid blocking app startup)
-  setTimeout(() => {
+  initialTimeoutId = setTimeout(() => {
+    initialTimeoutId = null;
     checkForUpdate().catch((err) =>
       console.error("[updater] Unhandled error in initial check:", err),
     );
@@ -216,6 +221,10 @@ export function startAutoUpdate(): void {
  * Stop periodic update checks. Call during app teardown if needed.
  */
 export function stopAutoUpdate(): void {
+  if (initialTimeoutId !== null) {
+    clearTimeout(initialTimeoutId);
+    initialTimeoutId = null;
+  }
   if (intervalId !== null) {
     clearInterval(intervalId);
     intervalId = null;
