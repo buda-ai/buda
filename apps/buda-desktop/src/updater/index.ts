@@ -62,9 +62,25 @@ export async function checkForUpdate(): Promise<boolean> {
 
   try {
     await update.downloadAndInstall();
-    await relaunch();
   } catch (err) {
     console.error("[updater] Failed to download/install update:", err);
+    await ask("升级失败，请稍后重试或手动下载最新版本。", {
+      title: "升级失败",
+      kind: "error",
+      okLabel: "确定",
+    });
+    return true;
+  }
+
+  try {
+    await relaunch();
+  } catch (err) {
+    console.error("[updater] Failed to relaunch:", err);
+    await ask("升级已完成，请手动重启应用以使用新版本。", {
+      title: "需要重启",
+      kind: "info",
+      okLabel: "确定",
+    });
   }
 
   return true;
@@ -80,12 +96,16 @@ export async function checkForUpdate(): Promise<boolean> {
 export function startAutoUpdate(): void {
   // First check after initial delay (avoid blocking app startup)
   setTimeout(() => {
-    checkForUpdate();
+    checkForUpdate().catch((err) =>
+      console.error("[updater] Unhandled error in initial check:", err),
+    );
   }, INITIAL_DELAY_MS);
 
   // Periodic checks
   intervalId = setInterval(() => {
-    checkForUpdate();
+    checkForUpdate().catch((err) =>
+      console.error("[updater] Unhandled error in periodic check:", err),
+    );
   }, CHECK_INTERVAL_MS);
 }
 
